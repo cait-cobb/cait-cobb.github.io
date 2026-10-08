@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Caitlin Cobb</title>
+  <meta name="description" content="Machine learning, modeling, and software projects by Caitlin Cobb.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18h7l3-6 4 12 4-16 3 10h7' fill='none' stroke='%23b42b3a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="index.html">Caitlin Cobb</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
+          <li><a href="interests.html">Interests</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-intro">
+        <h1>Projects</h1>
+        <p>Academic, research, and industry work. Filter by area to narrow the list.</p>
+      </section>
+
+      <section class="section" aria-label="Project list">
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="ml" aria-pressed="false">Machine learning</button>
+          <button class="filter" type="button" data-filter="modeling" aria-pressed="false">Modeling and simulation</button>
+          <button class="filter" type="button" data-filter="clinical" aria-pressed="false">Health and clinical data</button>
+          <button class="filter" type="button" data-filter="software" aria-pressed="false">Software and HPC</button>
+        </div>
+        <p id="project-count" aria-live="polite"></p>
+        <ul class="project-list">
+          <li class="project" data-tags="clinical software">
+            <div>
+              <h3>Molecular Tumor Board decision-support app</h3>
+              <p class="project-context">UC Berkeley capstone with UCSF's Bakar Computational Health Sciences Institute, 2026 to present</p>
+              <p>A multi-page Streamlit application that gives clinicians one view of a patient's clinical and genomic profile. A single patient lookup triggers parallel retrieval across modules for diagnosis, mutations, treatment, gene and drug information, and clinical trials, which keeps the interface responsive.</p>
+              <p class="project-result">Built with a four-person team. I'm continuing the work as a volunteer researcher.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>Streamlit</li><li>Clinical data</li><li>OMOP</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="ml clinical">
+            <div>
+              <h3>Predicting CYP2C9 drug metabolism with deep learning</h3>
+              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
+              <p>CYP2C9 metabolizes an estimated 15 to 20% of clinically used drugs. Our team built classifiers on 12,825 ChEMBL compounds, moving from a random forest to CNNs on SMILES images, transformer embeddings, and finally a dual-branch CNN that combines structure images with molecular descriptors. I also built a variational autoencoder for generating new molecules and diagnosed why it collapsed.</p>
+              <p class="project-result">95% validation accuracy, up from 72% for the random forest baseline.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>RDKit</li><li>TensorFlow</li><li>Hugging Face</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="ml software">
+            <div>
+              <h3>GPU neural network training and profiling</h3>
+              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
+              <p>Ported a neural network's training loop from CPU to GPU, keeping training data on the device so almost nothing crossed the bus each epoch. Profiling on NERSC's Perlmutter showed the small model was limited by kernel launch overhead, so I scaled up to a three-body potential energy surface model.</p>
+              <p class="project-result">About 9 times faster than the CPU version, and GPU utilization rose from 16% to 93% on the larger model.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>CUDA</li><li>PyCUDA</li><li>Nsight</li><li>Perlmutter</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="modeling software">
+            <div>
+              <h3>Parallel molecular dynamics with MPI</h3>
+              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
+              <p>Parallelized a Lennard-Jones molecular dynamics code so no single process ever holds all the particle data, and halved force calculations using Newton's third law. Strong-scaling, communication, and load-balance measurements showed that waiting between processes, not message overhead, was the real bottleneck.</p>
+              <p class="project-result">25.6 times faster on 64 cores than on one.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>C++</li><li>MPI</li><li>Perlmutter</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="modeling">
+            <div>
+              <h3>Vibrational modes from a quantum chemistry code</h3>
+              <p class="project-context">Numerical Algorithms for Computational Quantum Chemistry, UC Berkeley, Fall 2025</p>
+              <p>Extended a semi-empirical (CNDO/2) quantum chemistry code to calculate how molecules vibrate, using finite-difference Hessians, and generated animations of each vibration for molecular visualization software.</p>
+              <p class="project-result">Close agreement with NIST experimental data for hydrogen stretching modes, with larger errors for bending modes, a known limit of the method.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>C++</li><li>Numerical methods</li><li>Avogadro</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="ml clinical">
+            <div>
+              <h3>Detecting malaria-infected cells with an autoencoder</h3>
+              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
+              <p>Trained a convolutional autoencoder only on images of healthy cells, then flagged infected cells by how poorly the model could reconstruct them. Reviewing misclassified cells showed that unusually shaped healthy cells were the main source of errors.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>TensorFlow</li><li>Image processing</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="ml">
+            <div>
+              <h3>Classifying disaster damage from satellite images</h3>
+              <p class="project-context">Principles and Techniques of Data Science, UC Berkeley, Spring 2025</p>
+              <p>Team project classifying satellite images by disaster type and building damage level, using edge-detection and color features and handling heavily imbalanced classes.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>scikit-learn</li><li>Computer vision</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="modeling clinical">
+            <div>
+              <h3>Finite element model of cerebrospinal fluid flow</h3>
+              <p class="project-context">Bucknell University, Spring 2020</p>
+              <p>Modeled cerebrospinal fluid flow through the brain and cervical spine in COMSOL, comparing healthy anatomy with cysts of different sizes and with the thicker fluid seen in meningitis.</p>
+              <p class="project-result">Presented as a research poster.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>COMSOL</li><li>Fluid mechanics</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="clinical">
+            <div>
+              <h3>Physiological signal studies</h3>
+              <p class="project-context">Bucknell University, 2018</p>
+              <p>Designed studies that recorded and analyzed heart signals (EKG) at rest and during activity, muscle signals (EMG) across different loads and grips, and motion-capture and force-plate data on how backpack weight changes posture.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>EKG</li><li>EMG</li><li>Motion capture</li><li>Statistics</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="software">
+            <div>
+              <h3>Cheminformatics toolkit in Python and C++</h3>
+              <p class="project-context">Programming Languages for Molecular Sciences, UC Berkeley, Fall 2024</p>
+              <p>A graph-based molecule library with molecular fingerprints, aromatic ring detection, and a command-line substructure search, plus C++ tools for precise summation and molecular graph analysis.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>C++</li><li>NetworkX</li><li>pytest</li></ul>
+            </div>
+          </li>
+          <li class="project" data-tags="software">
+            <div>
+              <h3>Support-ticket analytics tool</h3>
+              <p class="project-context">Johnson &amp; Johnson Technology Leadership Development Program, 2021 to 2022</p>
+              <p>Co-designed a Python backend that clustered support tickets using text processing and statistics, feeding dashboards that helped teams find recurring problems worth automating.</p>
+              <p class="project-result">Adopted by about 1,500 users and contributed to automations that removed 17,000 tickets and saved $1.6M.</p>
+              <!-- To add links, uncomment and edit:
+              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+              -->
+            </div>
+            <div class="project-side">
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>NLP</li><li>Tableau</li></ul>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span data-year>2026</span> Caitlin Cobb. Hosted on GitHub Pages.</p>
+      <!-- EDIT: replace the email address and profile links below with your own -->
+      <p>
+        <a href="mailto:caitcobb5404@gmail.com">Email</a> &nbsp;
+        <a href="https://www.linkedin.com/in/caitlin-c-19450915a">LinkedIn</a> &nbsp;
+        <!-- <a href="https://github.com/cait-cobb">GitHub</a> -->
+      </p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
