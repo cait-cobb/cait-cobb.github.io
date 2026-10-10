@@ -32,7 +32,7 @@
     <div class="wrap">
       <section class="page-intro">
         <h1>Projects</h1>
-        <p>Academic, research, and industry work. Filter by area to narrow the list.</p>
+        <p>Academic, research, and industry work. Filter by area, or choose a project to read more.</p>
       </section>
 
       <section class="section" aria-label="Project list">
@@ -46,152 +46,123 @@
         <p id="project-count" aria-live="polite"></p>
         <ul class="project-list">
           <li class="project" data-tags="clinical software">
-            <div>
-              <h3>Molecular Tumor Board decision-support app</h3>
-              <p class="project-context">UC Berkeley capstone with UCSF's Bakar Computational Health Sciences Institute, 2026 to present</p>
-              <p>A multi-page Streamlit application that gives clinicians one view of a patient's clinical and genomic profile. A single patient lookup triggers parallel retrieval across modules for diagnosis, mutations, treatment, gene and drug information, and clinical trials, which keeps the interface responsive.</p>
-              <p class="project-result">Built with a four-person team. I'm continuing the work as a volunteer researcher.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/tumor-board.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/tumor-board.html">Molecular Tumor Board decision-support app</a></h3>
+              <p class="project-context">UC Berkeley capstone with UCSF's Bakar Computational Health Sciences Institute, 2026 to present</p>
+              <p>A Streamlit app that gives clinicians one view of a patient's clinical and genomic profile.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>Streamlit</li><li>Clinical data</li><li>OMOP</li></ul>
             </div>
           </li>
           <li class="project" data-tags="ml clinical">
-            <div>
-              <h3>Predicting CYP2C9 drug metabolism with deep learning</h3>
-              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
-              <p>CYP2C9 metabolizes an estimated 15 to 20% of clinically used drugs. Our team built classifiers on 12,825 ChEMBL compounds, moving from a random forest to CNNs on SMILES images, transformer embeddings, and finally a dual-branch CNN that combines structure images with molecular descriptors. I also built a variational autoencoder for generating new molecules and diagnosed why it collapsed.</p>
-              <p class="project-result">95% validation accuracy, up from 72% for the random forest baseline.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/cyp2c9-metabolism.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/cyp2c9-metabolism.html">Predicting CYP2C9 drug metabolism with deep learning</a></h3>
+              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
+              <p>Deep learning models that predict CYP2C9 drug metabolism, reaching 95% validation accuracy.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>RDKit</li><li>TensorFlow</li><li>Hugging Face</li></ul>
             </div>
           </li>
           <li class="project" data-tags="ml software">
-            <div>
-              <h3>GPU neural network training and profiling</h3>
-              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
-              <p>Ported a neural network's training loop from CPU to GPU, keeping training data on the device so almost nothing crossed the bus each epoch. Profiling on NERSC's Perlmutter showed the small model was limited by kernel launch overhead, so I scaled up to a three-body potential energy surface model.</p>
-              <p class="project-result">About 9 times faster than the CPU version, and GPU utilization rose from 16% to 93% on the larger model.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/gpu-neural-network.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/gpu-neural-network.html">GPU neural network training and profiling</a></h3>
+              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
+              <p>Moved a neural network's training loop onto the GPU for about a 9 times speedup.</p>
               <ul class="tags" aria-label="Tools"><li>CUDA</li><li>PyCUDA</li><li>Nsight</li><li>Perlmutter</li></ul>
             </div>
           </li>
           <li class="project" data-tags="modeling software">
-            <div>
-              <h3>Parallel molecular dynamics with MPI</h3>
-              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
-              <p>Parallelized a Lennard-Jones molecular dynamics code so no single process ever holds all the particle data, and halved force calculations using Newton's third law. Strong-scaling, communication, and load-balance measurements showed that waiting between processes, not message overhead, was the real bottleneck.</p>
-              <p class="project-result">25.6 times faster on 64 cores than on one.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/mpi-molecular-dynamics.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/mpi-molecular-dynamics.html">Parallel molecular dynamics with MPI</a></h3>
+              <p class="project-context">High Performance Computing, UC Berkeley, Spring 2026</p>
+              <p>A Lennard-Jones simulation parallelized with MPI, 25.6 times faster on 64 cores.</p>
               <ul class="tags" aria-label="Tools"><li>C++</li><li>MPI</li><li>Perlmutter</li></ul>
             </div>
           </li>
           <li class="project" data-tags="modeling">
-            <div>
-              <h3>Vibrational modes from a quantum chemistry code</h3>
-              <p class="project-context">Numerical Algorithms for Computational Quantum Chemistry, UC Berkeley, Fall 2025</p>
-              <p>Extended a semi-empirical (CNDO/2) quantum chemistry code to calculate how molecules vibrate, using finite-difference Hessians, and generated animations of each vibration for molecular visualization software.</p>
-              <p class="project-result">Close agreement with NIST experimental data for hydrogen stretching modes, with larger errors for bending modes, a known limit of the method.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/vibrational-modes.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/vibrational-modes.html">Vibrational modes from a quantum chemistry code</a></h3>
+              <p class="project-context">Numerical Algorithms for Computational Quantum Chemistry, UC Berkeley, Fall 2025</p>
+              <p>Extended a quantum chemistry code to calculate and animate how molecules vibrate.</p>
               <ul class="tags" aria-label="Tools"><li>C++</li><li>Numerical methods</li><li>Avogadro</li></ul>
             </div>
           </li>
           <li class="project" data-tags="ml clinical">
-            <div>
-              <h3>Detecting malaria-infected cells with an autoencoder</h3>
-              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
-              <p>Trained a convolutional autoencoder only on images of healthy cells, then flagged infected cells by how poorly the model could reconstruct them. Reviewing misclassified cells showed that unusually shaped healthy cells were the main source of errors.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/malaria-autoencoder.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/malaria-autoencoder.html">Detecting malaria-infected cells with an autoencoder</a></h3>
+              <p class="project-context">Machine Learning Algorithms, UC Berkeley, Spring 2025</p>
+              <p>Flagged infected cells by how poorly an autoencoder trained on healthy cells could rebuild them.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>TensorFlow</li><li>Image processing</li></ul>
             </div>
           </li>
           <li class="project" data-tags="ml">
-            <div>
-              <h3>Classifying disaster damage from satellite images</h3>
-              <p class="project-context">Principles and Techniques of Data Science, UC Berkeley, Spring 2025</p>
-              <p>Team project classifying satellite images by disaster type and building damage level, using edge-detection and color features and handling heavily imbalanced classes.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/disaster-damage.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/disaster-damage.html">Classifying disaster damage from satellite images</a></h3>
+              <p class="project-context">Principles and Techniques of Data Science, UC Berkeley, Spring 2025</p>
+              <p>Classified satellite images by disaster type and building damage level.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>scikit-learn</li><li>Computer vision</li></ul>
             </div>
           </li>
           <li class="project" data-tags="modeling clinical">
-            <div>
-              <h3>Finite element model of cerebrospinal fluid flow</h3>
-              <p class="project-context">Bucknell University, Spring 2020</p>
-              <p>Modeled cerebrospinal fluid flow through the brain and cervical spine in COMSOL, comparing healthy anatomy with cysts of different sizes and with the thicker fluid seen in meningitis.</p>
-              <p class="project-result">Presented as a research poster.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/csf-flow.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/csf-flow.html">Finite element model of cerebrospinal fluid flow</a></h3>
+              <p class="project-context">Bucknell University, Spring 2020</p>
+              <p>A COMSOL model of cerebrospinal fluid flow in healthy anatomy, with cysts, and in meningitis.</p>
               <ul class="tags" aria-label="Tools"><li>COMSOL</li><li>Fluid mechanics</li></ul>
             </div>
           </li>
           <li class="project" data-tags="clinical">
-            <div>
-              <h3>Physiological signal studies</h3>
-              <p class="project-context">Bucknell University, 2018</p>
-              <p>Designed studies that recorded and analyzed heart signals (EKG) at rest and during activity, muscle signals (EMG) across different loads and grips, and motion-capture and force-plate data on how backpack weight changes posture.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/physiological-signals.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/physiological-signals.html">Physiological signal studies</a></h3>
+              <p class="project-context">Bucknell University, 2018</p>
+              <p>Studies of heart and muscle signals, and of how backpack weight changes posture.</p>
               <ul class="tags" aria-label="Tools"><li>EKG</li><li>EMG</li><li>Motion capture</li><li>Statistics</li></ul>
             </div>
           </li>
           <li class="project" data-tags="software">
-            <div>
-              <h3>Cheminformatics toolkit in Python and C++</h3>
-              <p class="project-context">Programming Languages for Molecular Sciences, UC Berkeley, Fall 2024</p>
-              <p>A graph-based molecule library with molecular fingerprints, aromatic ring detection, and a command-line substructure search, plus C++ tools for precise summation and molecular graph analysis.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/cheminformatics-toolkit.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/cheminformatics-toolkit.html">Cheminformatics toolkit in Python and C++</a></h3>
+              <p class="project-context">Programming Languages for Molecular Sciences, UC Berkeley, Fall 2024</p>
+              <p>A graph-based molecule library with fingerprints, ring detection, and substructure search.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>C++</li><li>NetworkX</li><li>pytest</li></ul>
             </div>
           </li>
           <li class="project" data-tags="software">
-            <div>
-              <h3>Support-ticket analytics tool</h3>
-              <p class="project-context">Johnson &amp; Johnson Technology Leadership Development Program, 2021 to 2022</p>
-              <p>Co-designed a Python backend that clustered support tickets using text processing and statistics, feeding dashboards that helped teams find recurring problems worth automating.</p>
-              <p class="project-result">Adopted by about 1,500 users and contributed to automations that removed 17,000 tickets and saved $1.6M.</p>
-              <!-- To add links, uncomment and edit:
-              <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
-              -->
+            <div class="project-thumb">
+              <img src="images/projects/support-ticket-analytics.jpg" alt="" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="project-side">
+            <div class="project-body">
+              <h3><a href="projects/support-ticket-analytics.html">Support-ticket analytics tool</a></h3>
+              <p class="project-context">Johnson &amp; Johnson Technology Leadership Development Program, 2021 to 2022</p>
+              <p>A Python backend that clustered support tickets to find problems worth automating.</p>
               <ul class="tags" aria-label="Tools"><li>Python</li><li>NLP</li><li>Tableau</li></ul>
             </div>
           </li>

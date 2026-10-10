@@ -363,19 +363,58 @@ main { display: block; }
 .filter:hover { border-color: var(--accent); }
 .filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 
-.project-list { list-style: none; margin: 0; padding: 0; }
-.project {
+/* Gallery: each card links to its own page in projects/ */
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 12rem;
-  gap: 0.5rem 2rem;
-  padding: 1.75rem 0;
-  border-top: 1px solid var(--rule);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.75rem;
 }
+.project {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.project:hover { border-color: var(--accent); }
+.project:focus-within { outline: 3px solid var(--accent); outline-offset: 3px; }
 .project[hidden] { display: none; }
-.project h3 { margin-bottom: 0.3rem; }
+.project-body { padding: 1.1rem 1.25rem 1.35rem; display: flex; flex-direction: column; flex: 1; }
+.project-body .tags { margin-top: auto; }
+.project h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+.project h3 a { color: var(--ink); text-decoration: none; }
+.project h3 a:focus-visible { outline: none; }
+/* Stretch the title link over the whole card so the card is clickable */
+.project h3 a::after { content: ""; position: absolute; inset: 0; }
+.project:hover h3 a { color: var(--accent); }
+.project-body p { font-size: 0.98rem; }
 .project-context { color: var(--muted); margin-bottom: 0.75rem; }
 .project-result { font-weight: 700; }
-.project-side { color: var(--muted); font-size: 0.95rem; }
+
+/* Image spot; shows the chart-paper grid until a picture is added */
+.project-thumb, .project-hero {
+  background-color: var(--accent-soft);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.project-thumb { aspect-ratio: 16 / 10; border-bottom: 1px solid var(--rule); }
+.project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Individual project pages */
+.project-page h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.back-link { margin-bottom: 1.25rem; }
+.back-link a { text-decoration: none; }
+.project-hero { margin: 1rem 0 0; border-radius: 6px; overflow: hidden; max-width: 860px; }
+.project-hero img { width: 100%; }
+.project-hero figcaption { background: var(--paper); color: var(--muted); font-size: 0.95rem; padding: 0.5rem 0 0; }
+.project-detail h2 { font-size: 1.4rem; margin-top: 2rem; }
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tags li {
   background: var(--accent-soft);
@@ -384,10 +423,7 @@ main { display: block; }
   padding: 0.15rem 0.55rem;
   border-radius: 3px;
 }
-.project-links { margin-top: 0.75rem; display: flex; gap: 1rem; }
-@media (max-width: 720px) {
-  .project { grid-template-columns: 1fr; }
-}
+.project-links { margin-top: 1.5rem; display: flex; gap: 1rem; }
 
 /* Interests */
 .interest { max-width: 72ch; }

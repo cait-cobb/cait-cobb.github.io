@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  PROJECT PAGE TEMPLATE
+
+  This file is not part of the site. GitHub Pages skips files whose names
+  start with an underscore, so it is never published, and nothing links to it.
+
+  To make a new project page:
+    1. Copy this file into this same projects/ folder and rename it with a
+       short, lowercase, hyphenated name, e.g. projects/protein-folding.html
+       (no underscore at the start, or it won't be published).
+    2. Fill in every spot marked EDIT below, then delete this comment block.
+    3. Save the picture as images/projects/protein-folding.jpg (same name).
+    4. Add a card to the gallery on projects.html. A ready-to-copy card is at
+       the bottom of this file.
+
+  Paths: this page lives one folder down, so links to the rest of the site
+  start with ../ (e.g. ../css/style.css, ../images/...). Keep them that way.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- EDIT: project title (shown in the browser tab) -->
+  <title>PROJECT TITLE | Caitlin Cobb</title>
+  <!-- EDIT: one-sentence summary (shown in search results and link previews) -->
+  <meta name="description" content="ONE-SENTENCE SUMMARY OF THE PROJECT.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18h7l3-6 4 12 4-16 3 10h7' fill='none' stroke='%23b42b3a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Site header: same on every page, no edits needed -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="../index.html">Caitlin Cobb</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+          <li><a href="../interests.html">Interests</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-intro project-page">
+        <p class="back-link"><a href="../projects.html">&larr; All projects</a></p>
+        <!-- EDIT: project title -->
+        <h1>PROJECT TITLE</h1>
+        <!-- EDIT: where and when, e.g. "Course name, UC Berkeley, Fall 2026" -->
+        <p>COURSE OR ORGANIZATION, DATE</p>
+      </section>
+
+      <!-- EDIT: main picture. Change both "project-name"s to this page's file name,
+           and describe the picture in alt="" for screen readers
+           (e.g. alt="Loss curves for the three models").
+           If the image file is missing, this whole block hides itself. -->
+      <figure class="project-hero">
+        <img src="../images/projects/project-name.jpg" alt="" onerror="this.parentElement.remove()">
+      </figure>
+
+      <section class="section project-detail">
+        <!-- EDIT: what the project is and what you did. Add as many <p> paragraphs as you like. -->
+        <p>WHAT THE PROJECT IS, WHY IT MATTERS, AND WHAT YOU DID.</p>
+
+        <!-- EDIT (optional): headline result in bold. Delete this line if there isn't one. -->
+        <p class="project-result">KEY RESULT, E.G. "95% VALIDATION ACCURACY."</p>
+
+        <!-- OPTIONAL SECTIONS: uncomment (remove the arrow lines) and edit any you want.
+
+        <h2>Approach</h2>
+        <p>How you tackled it.</p>
+
+        <h2>What I learned</h2>
+        <ul>
+          <li>First takeaway</li>
+          <li>Second takeaway</li>
+        </ul>
+
+        Extra image with a caption (save it in images/projects/):
+        <figure class="project-hero">
+          <img src="../images/projects/project-name-2.jpg" alt="DESCRIBE THE IMAGE">
+          <figcaption>Caption text</figcaption>
+        </figure>
+        -->
+
+        <!-- EDIT: tools and skills used. One <li> per tag. -->
+        <h2>Tools</h2>
+        <ul class="tags" aria-label="Tools"><li>TOOL ONE</li><li>TOOL TWO</li><li>TOOL THREE</li></ul>
+
+        <!-- OPTIONAL: links to code or a write-up. Uncomment and edit:
+        <p class="project-links"><a href="https://github.com/YOUR-USERNAME/REPO">Code</a> <a href="#">Write-up</a></p>
+        -->
+      </section>
+    </div>
+  </main>
+  <!-- Site footer: same on every page, no edits needed -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span data-year>2026</span> Caitlin Cobb. Hosted on GitHub Pages.</p>
+      <p>
+        <a href="mailto:caitcobb5404@gmail.com">Email</a> &nbsp;
+        <a href="https://www.linkedin.com/in/caitlin-c-19450915a">LinkedIn</a> &nbsp;
+        <!-- <a href="https://github.com/cait-cobb">GitHub</a> -->
+      </p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
+<!--
+  ============================================================
+  GALLERY CARD: copy everything between the lines below into projects.html,
+  inside <ul class="project-list">. Cards appear in the order they're listed,
+  so paste it at the top to show it first.
+
+  data-tags controls the filter buttons. Use any of, separated by spaces:
+    ml   modeling   clinical   software
+
+  Replace "project-name" (twice) with this page's file name.
+  ------------------------------------------------------------
+
+          <li class="project" data-tags="ml software">
+            <div class="project-thumb">
+              <img src="images/projects/project-name.jpg" alt="" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="project-body">
+              <h3><a href="projects/project-name.html">PROJECT TITLE</a></h3>
+              <p class="project-context">COURSE OR ORGANIZATION, DATE</p>
+              <p>ONE-SENTENCE BLURB.</p>
+              <ul class="tags" aria-label="Tools"><li>TOOL ONE</li><li>TOOL TWO</li></ul>
+            </div>
+          </li>
+
+  ------------------------------------------------------------
+  ============================================================
+-->
