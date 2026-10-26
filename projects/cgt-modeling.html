@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CGT Fed-Batch Feeding Advisor | Caitlin Cobb</title>
+  <meta name="description" content="A mechanistic cell-culture model and dashboard that predicts whether a fed-batch feeding strategy will reach its target titer, before any bioreactor time is spent.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18h7l3-6 4 12 4-16 3 10h7' fill='none' stroke='%23b42b3a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Site header: same on every page, no edits needed -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="../index.html">Caitlin Cobb</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+          <li><a href="../interests.html">Interests</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-intro project-page">
+        <p class="back-link"><a href="../projects.html">&larr; All projects</a></p>
+        <h1>CGT Fed-Batch Feeding Advisor</h1>
+        <p>Independent project, Fall 2026</p>
+      </section>
+
+      <figure class="project-hero">
+        <img src="../images/projects/cgt-modeling.jpg" alt="Two line charts of predicted 14-day fed-batch runs for three feeding plans. Viable cell density peaks at about 5, 8.5 and 11 million cells per mL for no feed, one feed and two feeds. Final titer is about 1,600, 2,800 and 3,800 mg/L, and only the fed plans cross the 2,000 mg/L target." onerror="this.parentElement.remove()">
+      </figure>
+
+      <section class="section project-detail">
+        <p>Process scientists running fed-batch cell culture (CHO or HEK293) usually find out whether a feeding strategy works by running it, which costs weeks of bioreactor time. I built a decision-support tool that answers the question first, on paper: enter a feeding plan and starting conditions, and it returns the predicted viable cell density and titer over the run, an uncertainty band, and a clear pass/fail against the target titer.</p>
+
+        <p>At its core is a mechanistic model of three coupled quantities (viable cell density, glucose and product titer), solved as a system of ordinary differential equations. Each feed is a sudden jump in glucose rather than a smooth change, so the simulation is split at every feed, integrated piece by piece, and the glucose is added between pieces.</p>
+
+        <p class="project-result">On a bench-scale 3 L, 14-day run, two feeds are predicted to raise final titer from 1.6 g/L to 3.8 g/L. With no feeds the run misses a 2 g/L target; both fed plans clear it.</p>
+
+        <h2>Approach</h2>
+        <ul>
+          <li><strong>Growth:</strong> Monod kinetics on glucose, a logistic term that caps cell density, and first-order cell death. Every parameter is documented as either taken from published ranges or deliberately chosen.</li>
+          <li><strong>Glucose uptake:</strong> the Pirt model, combining glucose used to make new cells with a maintenance cost that every living cell pays.</li>
+          <li><strong>Product:</strong> Luedeking&ndash;Piret, with the growth-linked term tied to new cell growth rather than the net change in cell number, so dying cells can never remove product that has already been secreted.</li>
+          <li><strong>Dashboard:</strong> a Streamlit app that shows the verdict first, then the titer and cell density charts.</li>
+          <li><strong>Testing:</strong> pytest checks on physical behaviour (titer never falls, feed order doesn't matter, cell density stays below its ceiling) and a headless dashboard test, all run in Docker by GitHub Actions on every push.</li>
+        </ul>
+
+        <h2>What I learned</h2>
+        <ul>
+          <li><strong>A model that runs isn't necessarily right.</strong> My first working version predicted 270 million cells/mL for a heavy feeding plan, more than ten times what a real culture reaches, because glucose was the only thing that could limit growth. Adding a maintenance cost only scaled the numbers down; a carrying-capacity ceiling was what fixed it.</li>
+          <li><strong>Check results against a hand calculation.</strong> Once, every culture starved within an hour. Working out the expected numbers by hand matched the output exactly, which traced the problem to a unit conversion that made one coefficient about 1,000 times too large.</li>
+          <li><strong>Containers aren't reproducible unless every dependency is pinned.</strong> An unpinned library that Streamlit relies on updated itself and broke the charts. The new dashboard test caught it.</li>
+        </ul>
+
+        <h2>Next</h2>
+        <p>Generate synthetic &ldquo;ground truth&rdquo; runs that include effects the model leaves out, such as cells declining late in a run even when fed. Then train a hybrid correction term on the gap between that data and the model, replacing the fixed &plusmn;15% band with uncertainty learned from data.</p>
+
+        <h2>Tools</h2>
+        <ul class="tags" aria-label="Tools"><li>Python</li><li>SciPy</li><li>NumPy</li><li>pandas</li><li>Pydantic</li><li>Streamlit</li><li>pytest</li><li>Docker</li><li>GitHub Actions</li></ul>
+
+        <p class="project-links"><a href="https://github.com/cait-cobb/CGT-Fed-Batch-Feeding-Advisor">Code</a></p>
+      </section>
+    </div>
+  </main>
+  <!-- Site footer: same on every page, no edits needed -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span data-year>2026</span> Caitlin Cobb. Hosted on GitHub Pages.</p>
+      <p>
+        <a href="mailto:caitcobb5404@gmail.com">Email</a> &nbsp;
+        <a href="https://www.linkedin.com/in/caitlin-c-19450915a">LinkedIn</a> &nbsp;
+        <!-- <a href="https://github.com/cait-cobb">GitHub</a> -->
+      </p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
