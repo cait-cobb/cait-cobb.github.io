@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+    Portfolio project page. Keep site-relative paths when placing this file in
+    the portfolio's projects/ directory.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tox21 Toxicity Modeling | Caitlin Cobb</title>
+  <meta name="description" content="A scaffold-aware comparison of LightGBM molecular descriptors and a multitask Chemprop graph neural network for Tox21 assay activity.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18h7l3-6 4 12 4-16 3 10h7' fill='none' stroke='%23b42b3a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body {
+      margin: 0;
+      color: #233238;
+      background: #fff;
+      font: 17px/1.65 "Atkinson Hyperlegible", "Avenir Next", sans-serif;
+    }
+    a { color: #9e2734; }
+    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { border-bottom: 1px solid #d8dedb; }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 22px; min-height: 72px; }
+    .site-name { color: #1d3035; font-weight: 700; text-decoration: none; }
+    .site-nav ul { display: flex; flex-wrap: wrap; gap: 18px; margin: 0; padding: 0; list-style: none; }
+    .site-nav a { color: #34474b; text-decoration: none; }
+    .nav-toggle { display: none; }
+    .page-intro { padding: 40px 0 22px; }
+    .page-intro h1 { margin: 16px 0 4px; color: #172d31; font: 500 clamp(2.2rem, 5vw, 3.5rem)/1.08 "Newsreader", Georgia, serif; }
+    .back-link { margin: 0; }
+    .project-hero { margin: 8px 0 36px; }
+    .project-hero figcaption { margin-top: 10px; color: #506166; font-size: .92rem; }
+    .project-figure img { display: block; width: 100%; height: auto; border: 1px solid #d5ddd8; }
+    .project-detail .project-figure { margin: 22px 0; }
+    .project-detail { max-width: 820px; padding-bottom: 44px; }
+    .project-detail h2 { margin: 34px 0 8px; color: #172d31; font: 500 1.8rem/1.2 "Newsreader", Georgia, serif; }
+    .project-result { padding: 14px 18px; border-left: 4px solid #b42b3a; background: #f5f6f3; font-weight: 700; }
+    .project-links { margin: 28px 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .tags li { padding: 3px 9px; border: 1px solid #cbd5d1; color: #31484c; font-size: .88rem; }
+    .site-footer { padding: 22px 0; border-top: 1px solid #d8dedb; color: #506166; font-size: .9rem; }
+    .skip-link { position: absolute; left: -9999px; }
+    .skip-link:focus { left: 12px; top: 12px; z-index: 3; padding: 8px; background: white; }
+    .tox-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: stretch;
+      gap: 12px;
+      padding: 22px;
+      background: #f3f5f2;
+      border: 1px solid #d5ddd8;
+    }
+    .tox-flow-step {
+      display: flex;
+      min-height: 132px;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 14px;
+      color: #172d31;
+      background: #fff;
+      border-top: 4px solid #147d73;
+    }
+    .tox-flow-step span { color: #b42b3a; font-size: .82rem; font-weight: 700; }
+    .tox-flow-step strong { font-family: "Newsreader", Georgia, serif; font-size: 1.22rem; }
+    .tox-flow-step small { line-height: 1.45; }
+    .tox-flow-models { border-top-color: #c75b39; }
+    .tox-flow-arrow { align-self: center; color: #536368; font-size: 1.35rem; }
+    @media (max-width: 720px) {
+      .site-header .wrap { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .site-nav ul { gap: 10px 16px; }
+      .nav-toggle { display: inline-block; }
+      .tox-flow { grid-template-columns: 1fr; }
+      .tox-flow-arrow { transform: rotate(90deg); }
+      .tox-flow-step { min-height: 100px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Site header: same on every page, no edits needed -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="../index.html">Caitlin Cobb</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+          <li><a href="../interests.html">Interests</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-intro project-page">
+        <p class="back-link"><a href="../projects.html">&larr; All projects</a></p>
+        <h1>Tox21 Toxicity Modeling</h1>
+        <p>Independent machine-learning project, 2026</p>
+      </section>
+
+      <figure class="project-hero">
+        <div class="tox-flow" role="img" aria-label="Tox21 SMILES and assay labels are split by chemical scaffold, represented as fingerprints and molecular graphs, trained by LightGBM and Chemprop, and compared on held-out assay metrics.">
+          <div class="tox-flow-step"><span>01</span><strong>Tox21</strong><small>SMILES + sparse assay labels</small></div>
+          <div class="tox-flow-arrow" aria-hidden="true">&#8594;</div>
+          <div class="tox-flow-step"><span>02</span><strong>Scaffold split</strong><small>Separate chemical series</small></div>
+          <div class="tox-flow-arrow" aria-hidden="true">&#8594;</div>
+          <div class="tox-flow-step tox-flow-models"><span>03</span><strong>Two model families</strong><small>LightGBM features / Chemprop graphs</small></div>
+          <div class="tox-flow-arrow" aria-hidden="true">&#8594;</div>
+          <div class="tox-flow-step"><span>04</span><strong>Held-out tests</strong><small>ROC-AUC + PR-AUC by assay</small></div>
+        </div>
+        <figcaption>Evaluation keeps Bemis-Murcko scaffold groups separate so close chemical analogs do not cross between train, validation, and test.</figcaption>
+      </figure>
+
+      <figure class="project-hero project-figure">
+        <img src="../images/projects/tox21-model-comparison.png" alt="Per-assay ROC-AUC and PR-AUC for LightGBM and Chemprop across three scaffold splits, with standard-deviation bars" onerror="if (!this.dataset.fallback) { this.dataset.fallback = 'true'; this.src = 'images/projects/tox21-model-comparison.png'; } else { this.remove(); }">
+        <figcaption>Macro means are close across the three original scaffold partitions. Five of nine controlled Chemprop split/initialization runs now have predictions; four combinations remain.</figcaption>
+      </figure>
+
+      <section class="section project-detail">
+        <p>Tox21 contains 12 nuclear-receptor and stress-response assays, with many labels unmeasured. This project builds a leakage-aware benchmark for predicting assay activity from molecular structure and asks how performance holds when test compounds belong to scaffold groups held out from training.</p>
+        <p>I implemented LightGBM baselines using Morgan fingerprints and RDKit descriptors, then trained a multitask Chemprop directed message-passing neural network. Missing assay values remain missing rather than being treated as inactive. Results are compared per assay across three scaffold partitions.</p>
+
+        <p class="project-result">Across three scaffold splits, macro ROC-AUC was 0.802 +/- 0.022 for Chemprop and 0.793 +/- 0.021 for LightGBM. Macro PR-AUC was 0.390 +/- 0.045 and 0.392 +/- 0.024, respectively. These close averages do not establish a clear overall winner.</p>
+
+        <h2>Results Explained</h2>
+        <p>Both models found useful patterns between a molecule's structure and its results in the Tox21 screening tests. A ROC-AUC near 0.8 means that, for a randomly chosen active and inactive pair, the model usually gives the active molecule the higher score. It does <strong>not</strong> mean 80% of predictions are correct.</p>
+        <p>The test set held out whole groups of related chemical structures. That makes this a tougher, more practical test of whether a model can recognize patterns in less familiar molecules, rather than simply recognizing close copies of compounds it saw during training.</p>
+        <p>The models performed similarly overall, and neither was best on every assay. For one assay, NR-AhR, using a representation learned from a larger collection of molecules improved the scores on one held-out split. That result is promising, but it needs to be checked on more splits.</p>
+        <p><strong>Why it matters:</strong> models like these could help prioritize chemicals for follow-up testing. They are research screening tools, not proof that a chemical is safe or harmful, and they do not replace laboratory testing.</p>
+
+        <h2>Approach</h2>
+        <ol>
+          <li>Parse and standardize SMILES, preserving missing assay labels.</li>
+          <li>Create random and Bemis-Murcko scaffold train/validation/test splits.</li>
+          <li>Benchmark Morgan fingerprints, RDKit descriptors, and their combination with per-assay LightGBM models.</li>
+          <li>Train a multitask Chemprop D-MPNN on each scaffold split and compare per-assay ROC-AUC and PR-AUC.</li>
+          <li>Use SHAP to inspect descriptor and Morgan-feature models; inspect fingerprint-bit examples for collisions.</li>
+          <li>Run a first validation-calibration and Tanimoto-similarity check for the NR-AhR LightGBM model.</li>
+        </ol>
+
+        <h2>What the results say</h2>
+        <ul>
+          <li>Random-split scores are generally higher than scaffold-split scores, so evaluation strategy changes apparent performance.</li>
+          <li>The two model families have similar average scaffold-split results, but their relative performance varies by assay.</li>
+          <li>PR-AUC needs to be read beside assay prevalence because positives are uncommon for several endpoints.</li>
+          <li>SHAP ranks features used by a fitted model; it does not establish that those molecular properties cause assay activity.</li>
+          <li>The top combined-model Morgan bit has varied sampled environments, a reminder that hashed fingerprint bits are not unique chemical fragments.</li>
+          <li>For NR-AhR on scaffold seed 0, LightGBM on frozen CheMeleon embeddings reached ROC-AUC 0.846 and PR-AUC 0.689; this is one split and needs replication.</li>
+        </ul>
+
+        <figure class="project-figure">
+          <img src="../images/projects/tox21-morgan-bit-1380.png" alt="Example NR-AhR molecule with a local Morgan fingerprint environment highlighted" onerror="if (!this.dataset.fallback) { this.dataset.fallback = 'true'; this.src = 'images/projects/tox21-morgan-bit-1380.png'; } else { this.remove(); }">
+          <figcaption>One example environment for the highly ranked MorganBit_1380 feature. Morgan bits are hashed and can represent multiple local environments, so this is an illustration, not a unique fragment definition.</figcaption>
+        </figure>
+
+        <h2>Current scope</h2>
+        <p>The LightGBM benchmark, NR-AhR Morgan-bit examples, calibration/applicability check, and seed-0 frozen CheMeleon embedding evaluation are complete. Five of nine controlled Chemprop split/initialization runs have predictions; four combinations remain. CheMeleon fine-tuning was stopped during epoch 2 after about 46 minutes on CPU and has no final test metrics. The detailed report distinguishes measured results from pending analyses.</p>
+
+        <p class="project-links"><a href="../PROJECT_REPORT.md">Read the full project report</a></p>
+
+        <h2>Tools</h2>
+        <ul class="tags" aria-label="Tools"><li>Python</li><li>RDKit</li><li>LightGBM</li><li>Chemprop</li><li>SHAP</li><li>Docker</li></ul>
+      </section>
+    </div>
+  </main>
+  <!-- Site footer: same on every page, no edits needed -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span data-year>2026</span> Caitlin Cobb. Hosted on GitHub Pages.</p>
+      <p>
+        <a href="mailto:caitcobb5404@gmail.com">Email</a> &nbsp;
+        <a href="https://www.linkedin.com/in/caitlin-c-19450915a">LinkedIn</a> &nbsp;
+        <!-- <a href="https://github.com/cait-cobb">GitHub</a> -->
+      </p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
+<!--
+  ============================================================
+  GALLERY CARD: copy everything between the lines below into projects.html,
+  inside <ul class="project-list">. Cards appear in the order they're listed,
+  so paste it at the top to show it first.
+
+  data-tags controls the filter buttons. Use any of, separated by spaces:
+    ml   modeling   clinical   software
+
+  Replace "tox21-model-project" (twice) with this page's file name.
+  ------------------------------------------------------------
+
+          <li class="project" data-tags="ml modeling">
+            <div class="project-thumb">
+              <img src="images/projects/tox21-model-comparison.png" alt="Tox21 molecular assay model comparison" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="project-body">
+              <h3><a href="projects/tox21-model-project.html">Tox21 Toxicity Modeling</a></h3>
+              <p class="project-context">Independent project, 2026</p>
+              <p>Scaffold-aware comparison of molecular-feature baselines and a multitask graph neural network across 12 toxicity assays.</p>
+              <ul class="tags" aria-label="Tools"><li>RDKit</li><li>LightGBM</li><li>Chemprop</li></ul>
+            </div>
+          </li>
+
+  ------------------------------------------------------------
+  ============================================================
+-->
