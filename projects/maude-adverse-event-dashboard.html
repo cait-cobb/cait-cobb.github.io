@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cardiac Ablation Catheter Safety Monitor | Caitlin Cobb</title>
+  <meta name="description" content="A governed Python pipeline and interactive dashboard for 35,655 FDA MAUDE adverse-event reports on cardiac ablation catheters, with scored data quality, lineage and a data dictionary.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18h7l3-6 4 12 4-16 3 10h7' fill='none' stroke='%23b42b3a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Site header: same on every page, no edits needed -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-name" href="../index.html">Caitlin Cobb</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+          <li><a href="../interests.html">Interests</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="wrap">
+      <section class="page-intro project-page">
+        <p class="back-link"><a href="../projects.html">&larr; All projects</a></p>
+        <h1>Cardiac Ablation Catheter Safety Monitor</h1>
+        <p>Independent project, Fall 2026</p>
+      </section>
+
+      <figure class="project-hero">
+        <img src="../images/projects/MAUDE-adverse-event-dashboard.jpg" alt="Stacked bar chart of MAUDE ablation catheter reports by year received, 2015 through September 2026. Yearly totals rise from 1,463 in 2015 to 6,761 in 2025. Pulsed field catheters first appear in 2024 at 27% of reports, then reach 61% in 2025 and 74% in 2026." onerror="this.parentElement.remove()">
+      </figure>
+
+      <section class="section project-detail">
+        <p>Medical device safety teams read adverse-event reports to spot emerging problems, but the public data is hard to trust as it arrives. FDA's MAUDE database comes as nested JSON, with blanks coded as &ldquo;NI&rdquo; or &ldquo;UNK&rdquo;, the same manufacturer spelled many ways, and dates that are missing or out of order. I treated that as a data governance problem first and a visualization problem second, so that every number on the dashboard traces back to a defined field, a documented transformation and a quality score.</p>
+
+        <p>I built a Python pipeline that pulls reports from the openFDA API for three cardiac ablation catheter product codes: general ablation, radiofrequency and cryoablation for atrial fibrillation, and pulsed field ablation. It curates them into documented tables and feeds an interactive dashboard that drills down by product, year, event type, device problem, brand, manufacturer and country.</p>
+
+        <p class="project-result">Across 35,655 reports received from 2015 through September 2026, pulsed field catheters went from 27% of reports in 2024, their first year in the data, to 74% in 2026.</p>
+
+        <h2>Approach</h2>
+        <ul>
+          <li><strong>Extraction:</strong> paged pulls by product code and year, with retries, automatic splitting into months past the API's 25,000-record paging limit, and a raw JSONL layer that can be re-run. Yearly counts match openFDA's own totals exactly.</li>
+          <li><strong>Curation:</strong> flattens each report into an events table plus child tables for devices, device problems, patient outcomes and patient problems. It standardizes null codes and ages, and reduces 125 manufacturer spellings to 33 names.</li>
+          <li><strong>Data quality:</strong> 10 scored rules across uniqueness, validity, consistency, timeliness and completeness, each with a threshold and a Pass, Warn or Fail status. Every report carries its own issue list, so reviewers can filter to suspect records.</li>
+          <li><strong>Metadata and lineage:</strong> a 31-field data dictionary records each field's definition, source path, transformation and criticality. A lineage table records row counts at each stage of the run.</li>
+          <li><strong>Trustworthy metrics:</strong> counts are always distinct reports, so a report listing three device problems isn't counted three times.</li>
+          <li><strong>Testing:</strong> 13 pytest tests cover null handling, date and age parsing, manufacturer normalization, de-duplication, the quality rules and API paging.</li>
+        </ul>
+
+        <h2>What the data showed</h2>
+        <ul>
+          <li><strong>Reporting moved quickly to pulsed field.</strong> Yearly reports across all three codes rose from 2,811 in 2023 to 6,761 in 2025, while reports under the two older codes fell slightly, so pulsed field accounts for the whole increase.</li>
+          <li><strong>Nine of the 10 quality rules passed.</strong> The exception was timeliness: about 62% of reports with an event date were received within 30 days of the event, below the 80% threshold. This is only a proxy, because the regulatory 30-day clock starts when a manufacturer becomes aware of an event, not on the event date.</li>
+          <li><strong>Traceability fields have the largest gaps.</strong> Lot number appears on 74% of reports and a device identifier (UDI) on 52%. Patient age appears on only 28%.</li>
+        </ul>
+
+        <h2>Limits</h2>
+        <p>MAUDE is passive surveillance. Reports can be incomplete or unverified, a report doesn't show that a device caused an event, and the number of devices in use is unknown. Report counts therefore can't measure risk or compare products: the rise in pulsed field reports may largely reflect how quickly these catheters were adopted. This is a portfolio project on public data, not a regulatory analysis, and it makes no claims about any manufacturer's products.</p>
+
+        <h2>Next</h2>
+        <p>Add a proportional reporting ratio by device problem, a standard signal-detection measure that doesn't need usage data. Then schedule the pipeline to refresh weekly and publish a Tableau version of the dashboard.</p>
+
+        <h2>Tools</h2>
+        <ul class="tags" aria-label="Tools"><li>Python</li><li>pandas</li><li>openFDA API</li><li>REST APIs</li><li>Data governance</li><li>Data quality</li><li>pytest</li><li>HTML/JavaScript</li></ul>
+      </section>
+    </div>
+  </main>
+  <!-- Site footer: same on every page, no edits needed -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>&copy; <span data-year>2026</span> Caitlin Cobb. Hosted on GitHub Pages.</p>
+      <p>
+        <a href="mailto:caitcobb5404@gmail.com">Email</a> &nbsp;
+        <a href="https://www.linkedin.com/in/caitlin-c-19450915a">LinkedIn</a> &nbsp;
+        <!-- <a href="https://github.com/cait-cobb">GitHub</a> -->
+      </p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
+<!--
+  ============================================================
+  GALLERY CARD: copy everything between the lines below into projects.html,
+  inside <ul class="project-list">. Cards appear in the order they're listed,
+  so paste it at the top to show it first.
+
+  data-tags controls the filter buttons. Use any of, separated by spaces:
+    ml   modeling   clinical   software
+
+  ------------------------------------------------------------
+
+          <li class="project" data-tags="clinical software">
+            <div class="project-thumb">
+              <img src="images/projects/MAUDE-adverse-event-dashboard.jpg" alt="Stacked bar chart of FDA MAUDE ablation catheter reports by year" loading="lazy" onerror="this.remove()">
+            </div>
+            <div class="project-body">
+              <h3><a href="projects/MAUDE-adverse-event-dashboard.html">Cardiac Ablation Catheter Safety Monitor</a></h3>
+              <p class="project-context">Independent project, Fall 2026</p>
+              <p>A governed pipeline and interactive dashboard for 35,655 FDA adverse-event reports on cardiac ablation catheters, with scored data quality and lineage tracking.</p>
+              <ul class="tags" aria-label="Tools"><li>Python</li><li>pandas</li><li>openFDA API</li><li>Data governance</li></ul>
+            </div>
+          </li>
+
+  ------------------------------------------------------------
+  ============================================================
+-->
